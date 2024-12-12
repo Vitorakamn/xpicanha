@@ -44,3 +44,22 @@ body {
     font-weight: 700;
     background-color: #ffffff;
 }
+
+/* .navbar-brand{
+    background-color: rgb(119, 17, 17) ;
+    color: #ffffff; 
+    font-family: var(--fonte-botoes);
+    font-size: large;
+    font-weight: 700;
+} */
+
+.navbar{
+    background-color: rgb(119, 17, 17) ;
+}
+
+.navbar span {
+    color: #ffffff; 
+    font-family: var(--fonte-botoes);
+    font-size: large;
+    font-weight: 700;
+}
