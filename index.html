@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> X-lanches| Monte seu lanche </title>
 
+    <!-- css -->
+    <link rel="stylesheet" href="css/estilo.css">
+
     <!-- VUE -->
+
     <!-- <script src="./vue.js"> </script>   (se n funcionar o link de baixo usar esse, backup) -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <!-- https://br.vuejs.org/v2/guide/installation.html -->
@@ -53,7 +57,7 @@
                     </div>
                 </div> <!-- FIM seção img -->
 
-                <div class="col-md-6" v-if="etapa == 1">
+                <div class="col-md-6 etapa1" v-if="etapa == 1">
 
                     <!-- TIPO do Pão -->
                     <div class="row mt-2">
@@ -62,7 +66,7 @@
 
                                 <!-- TITULO - Tipo do Pão -->
                                 <div class="card-header">
-                                    Tipo do Pão
+                                    <span>PÃO</span>
                                 </div>
 
                                 <div class="card-body">
@@ -94,7 +98,7 @@
                                 <!-- TITULO - Salada  -->
 
                                 <div class="card-header">
-                                    Saladas
+                                    <span>SALADA </span>
                                 </div>
 
                                 <!-- Card Body Alface -->
@@ -118,7 +122,7 @@
 
                                 <!-- Titulo Molhos -->
                                 <div class="card-header">
-                                    Molhos
+                                    <span>MOLHOS</span>
                                 </div>
 
                                 <!-- Card Body Tipos de Molhos -->
@@ -159,7 +163,7 @@
 
                                 <!-- TITULO - Tipos de Hamburguer -->
                                 <div class="card-header">
-                                    Hamburguer
+                                    <span>HAMBURGUER </span>
                                 </div>
                                 <div class="card-body">
 
@@ -179,7 +183,7 @@
                                     </div>
                                     <!-- vegetal -->
                                     <div class="form-check form-check-inline">
-                                        <input type="radio" class="form-check-input" value="soja"
+                                        <input type="radio" class="form-check-input" value="vegetariano"
                                             v-model="inputBurguer">
                                         <label class="form-check form-check-label">Vegetariano </label>
                                     </div>
@@ -192,7 +196,8 @@
                     <div class="row mt-2">
                         <!--     button    Fazer pedido    -->
                         <div class="col d-flex justify-content-end">
-                            <button type="button" class="btn btn-primary" @click="fazerPedido()"> Fazer o pedido
+                            <button type="button" class="btn btn-primary" @click="fazerPedido()"><span> Fazer
+                                    Pedido</span>
                             </button>
                         </div>
 
@@ -200,26 +205,26 @@
                     </div>
                 </div> <!-- Fim col md -->
 
-                <div class="col-md-6" v-if="etapa == 2">
+                <div class="col-md-6 etapa2" v-if="etapa == 2">
                     <div class="row mt-2">
                         <div class="col">
                             <div class="card">
 
                                 <!-- Titulo Informe seus dados -->
                                 <div class="card-header">
-                                    Informe seus dados
+                                    <span> INFORME SEUS DADOS</span>
                                 </div>
                                 <!-- card-body Informe seus dados -->
                                 <div class="card-body">
                                     <!-- nome -->
                                     <div class="mb-3">
-                                        <label class=" form-label">None </label>
-                                        <input type="text" class="form-control" v-model="inputNone">
+                                        <label class=" form-label">NOME </label>
+                                        <input type="text" class="form-control" v-model="inputNome">
                                     </div>
                                     <!-- mesa -->
                                     <div class="mb-3">
-                                        <label class="form-label"> Mesa </label>
-                                        <input type="text" class="form-control" v-model="inputNone">
+                                        <label class="form-label"> MESA </label>
+                                        <input type="text" class="form-control" v-model="inputMesa">
                                     </div>
 
                                 </div>
@@ -240,13 +245,25 @@
                     </div>
                 </div> <!-- fim col md 6 -->
 
-                <div class="col-md-6" v-if="etapa == 3">
+
+
+                <div class="col-md-6 etapa3" v-if="etapa == 3">
                     <!-- Pedido Confirmado -->
                     <div class="row mt-2">
                         <div class="col">
                             <div class="card">
 
                                 <!--  PEDIDO CONFIRMADO -->
+                                <div class="card-header">
+                                    pedido confirmado
+                                </div>
+                                <!-- mensagem -->
+                                <div class="card-body">
+                                    <p> Agora é so aguardar... </p>
+                                </div>
+
+
+
 
                             </div>
                         </div>
@@ -254,9 +271,12 @@
                     <!-- Repetir pedido -->
                     <div class="row mt-2">
                         <div class="col d-flex justify-content-between">
-
                             <!-- button Repetir Pedido -->
-
+                            <button type="button" class="btn btn-primary" @click="etapa = 1"></button>
+                            </button>
+                            <button type="button" class="btn btn-success" @click="novoPedido()">
+                                NOVO PEDIDO
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -284,6 +304,7 @@
                 etapa: 1, //fim etapa == 1
                 inputNome: '', //etapa == 2
                 inputMesa: '',
+                novoPedidoAssincrono: null,
             },
 
 
@@ -361,12 +382,36 @@
                     if (this.inputNome && this.inputMesa) {
                         this.etapa = 3
 
+                        this.novoPedidoAssincrono = setTimeout(() => this.novoPedido(), 500000)
+
                     } else {
                         alert('você precisa informar seu Nome e Mesa')
                     }
                 },
+
+                novoPedido() {
+                    this.etapa = 1
+
+                    this.inputTipoPao = ''
+                    this.inputSaladas = []
+                    this.inputMolhos = []
+                    this.inputBurguer = ''
+                    this.inputNome = ''
+                    this.inputMesa = ''
+                }
+
             },
-})
+            watch: {
+                etapa(novoValor) {
+                    if (novoValor == 1) {
+                        clearTimeout(this.novoPedidoAssincrono)
+
+
+                    }
+                }
+
+            }
+        })
     </script>
 
 
