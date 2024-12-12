@@ -8,6 +8,10 @@
 }
 
 
+body {
+    background-color:#ccc;
+}
+
 /* headers do pedido */
 
 .etapa1 .card-header {
@@ -38,6 +42,5 @@
     font-family: var(--fonte-selecao);
     font-size: 2000;
     font-weight: 700;
-    background-color: #ccc;
+    background-color: #ffffff;
 }
-
