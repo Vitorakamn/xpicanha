@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* fontes: */
+:root {
+    --fonte-selecao: "Inter";
+    --fonte-botoes: "Montserrat";
+    --fonte-menu: "Montserrat";
+}
+
+
+body {
+    background-color:#ccc;
+}
+
+/* headers do pedido */
+
+.etapa1 .card-header {
+    color: #ffffff;
+    font-family: var(--fonte-botoes);
+    background-color: rgb(119, 17, 17);
+    font-size: large;
+    font-weight: 700;
+}
+
+.etapa2 .card-header {
+    color: #ffffff;
+    font-family: var(--fonte-botoes);
+    background-color: rgb(119, 17, 17);
+    font-size: large;
+    font-weight: 700;
+}
+
+.etapa3 .card-header {
+    color: #ffffff;
+    font-family: var(--fonte-botoes);
+    background-color: rgb(119, 17, 17);
+    font-size: large;
+    font-weight: 700;
+}
+
+.card-body {
+    font-family: var(--fonte-selecao);
+    font-size: 2000;
+    font-weight: 700;
+    background-color: #ffffff;
+}
+
+/* .navbar-brand{
+    background-color: rgb(119, 17, 17) ;
+    color: #ffffff; 
+    font-family: var(--fonte-botoes);
+    font-size: large;
+    font-weight: 700;
+} */
+
+.navbar{
+    background-color: rgb(119, 17, 17) ;
+}
+
+.navbar span {
+    color: #ffffff; 
+    font-family: var(--fonte-botoes);
+    font-size: large;
+    font-weight: 700;
+}
